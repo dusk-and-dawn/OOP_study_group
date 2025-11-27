@@ -12,4 +12,4 @@ myString = stringHandler()
 
 print(myString.color)
 
-print(test)
+print("test again")
