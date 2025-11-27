@@ -7,7 +7,7 @@ class stringHandler:
     def shout(words):
         cprint(words)
 
-    def reverse(words):
+    def reverse(self, words):
         return words[::-1]
 
 myString = stringHandler()
@@ -16,3 +16,4 @@ print(myString.color)
 
 print("test again")
 print("test third test")
+print(myString.reverse('test'))
