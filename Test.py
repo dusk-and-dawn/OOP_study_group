@@ -11,3 +11,5 @@ class stringHandler:
 myString = stringHandler()
 
 print(myString.color)
+
+print(test)
