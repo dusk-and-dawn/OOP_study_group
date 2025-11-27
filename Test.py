@@ -7,6 +7,8 @@ class stringHandler:
     def shout(words):
         cprint(words)
 
+    def reverse(words):
+        return words[::-1]
 
 myString = stringHandler()
 
