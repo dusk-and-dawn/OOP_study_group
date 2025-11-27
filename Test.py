@@ -13,3 +13,4 @@ myString = stringHandler()
 print(myString.color)
 
 print("test again")
+print("test third test")
