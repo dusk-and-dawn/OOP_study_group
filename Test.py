@@ -3,6 +3,7 @@ from termcolor import colored, cprint
 class stringHandler:
     def __init__(self):
         self.color = "red"
+        self.mood = "happy"
 
     def shout(self, words):
         print(words.upper())
@@ -12,13 +13,11 @@ class stringHandler:
 
 myString = stringHandler()
 
-
-
 class StringMoods(stringHandler):
     def __init__(self):
         self.moods = {
             "happy": "green",
-            "sad": "red",
+            "sad": myString.color,
             "angry": "yellow",
             "surprised": "blue"
         }
@@ -31,6 +30,6 @@ handler = StringMoods()
 handler.say("hello", "happy")
 handler.say("Noooooo!!!!", "angry")
 handler.say("What??", "surprised")
-handler.say("What??", "kinder surprise")
+handler.say("What??", myString.mood)
 
 print(handler.shout('testing'))
