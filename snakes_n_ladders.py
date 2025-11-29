@@ -13,7 +13,7 @@ class Player:
             pass
         else:
             self.current += dice_roll
-        print(f"{self.name} rolled a {dice_roll} and is now on field {self.current}")
+        # print(f"{self.name} rolled a {dice_roll} and is now on field {self.current}")
 
 
 class Snake:
