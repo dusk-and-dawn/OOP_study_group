@@ -8,7 +8,7 @@ for i in range(1, 100000):
     player1 = Player("Kuba")
     rounds = 0
     while True:
-        # print("new turn")
+        print("new turn")
 
         player1.take_turn()
 
@@ -22,7 +22,7 @@ for i in range(1, 100000):
         
         if player1.current == 100:
             rounds += 1
-            # print(f"game finished after {rounds} rounds")
+            print(f"game finished after {rounds} rounds")
             res.append(rounds)
             break
 
