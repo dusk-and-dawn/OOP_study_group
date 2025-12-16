@@ -19,7 +19,7 @@ class Player:
 class Snake:
     def __init__(self, head, tail):
         self.head = head
-        self.tail = tail 
+        self.tail = tail
 
 class Ladder:
     def __init__(self, bottom, top):
