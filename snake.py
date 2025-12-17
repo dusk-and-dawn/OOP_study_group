@@ -6,16 +6,28 @@ pygame.init()
 
 
 class Snake():
-    def __init__(self, spawn=(5, 5), head, length=3):
+    def __init__(self , head, length=3, spawn=(5, 5)):
         self.spawn = spawn
         self.length = length 
         self.head = head
         self.grow_size = 0
     
-    def movement(self):
+    def spawn_worm(self):
+        self.surface.fill(self.color)
+        location = (randint(0, 0), randint(0, 0))
+        print(f"food is at {location}")
+        self.surface.blit(food, location)
+
+    def up(self):
         # up = (x=x, y+=1)
+
+    def down(self):
         # down = (x=x, y-=1)
+    
+    def left(self):
         #left = (x-=1, y=y)
+
+    def right(self):
         #right = (x+=1, y=y)
 
     def grow(self):
