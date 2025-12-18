@@ -6,7 +6,8 @@ The project is structured in a modular way so that the game logic, simulation, a
 
 
 📁 Project Structure
-.
+
+```bash
 ├── app.py               # Main entry point of the application
 ├── game_sim.py          # Game simulation logic
 ├── snake.py             # Snake-related logic / definitions
@@ -14,7 +15,7 @@ The project is structured in a modular way so that the game logic, simulation, a
 ├── Test.py              # Test or experimentation script
 ├── static/              # Static assets (if needed later)
 ├── __pycache__/         # Python bytecode cache (auto-generated)
-
+```
 
 ## 🚀 Features
 	•	🎲 Dice-based movement
