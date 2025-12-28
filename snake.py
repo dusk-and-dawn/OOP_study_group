@@ -48,54 +48,58 @@ class Snake(Gamebackground):
         self.spawn = spawn
         self.length = length 
         self.head = (int(260), int(260))
-        self.grow_size = 0
+        self.grow_size = 1
         self.prior_head = self.head
     
     def spawn_worm(self):
         location = (260, 260)
-        background.surface.blit(worm, location)
+        background.surface.blit(head, location)
 
     def update_snake(self):
         counter = 1
         if self.grow_size > 0:
             for i in range(self.grow_size):
-                diff = (self.head[0] - self.prior_head[0], self.head[1] - self.prior_head[1])
-                if diff == (0, -20):
-                    background.surface.blit(worm, (self.head[0], self.head[1]+60*counter))
-                elif diff == (0, +20):
-                    background.surface.blit(worm, (self.head[0], self.head[1]-60*counter))
-                elif diff == (-20, 0):
-                    background.surface.blit(worm, (self.head[0]+60*counter, self.head[1]))
-                elif diff == (+20, 0):
-                    background.surface.blit(worm, (self.head[0]-60*counter, self.head[1]))
+                if i == 0:
+                    background.surface.blit(head, self.head)
+                    counter -= 1
+                else:
+                    diff = (self.head[0] - self.prior_head[0], self.head[1] - self.prior_head[1])
+                    if diff == (0, -20):
+                        background.surface.blit(worm, (self.head[0], self.head[1]+30*counter))
+                    elif diff == (0, +20):
+                        background.surface.blit(worm, (self.head[0], self.head[1]-30*counter))
+                    elif diff == (-20, 0):
+                        background.surface.blit(worm, (self.head[0]+30*counter, self.head[1]))
+                    elif diff == (+20, 0):
+                        background.surface.blit(worm, (self.head[0]-30*counter, self.head[1]))
                 counter+=1
 
     def up(self):
         background.surface.fill(background.color)
         self.prior_head = self.head
         self.head = (self.head[0], self.head[1]-20)
-        background.surface.blit(worm, self.head)
+        background.surface.blit(head, self.head)
         self.update_snake()
 
     def down(self):
         background.surface.fill(background.color)
         self.prior_head = self.head
         self.head = (self.head[0], self.head[1]+20)
-        background.surface.blit(worm, self.head)
+        background.surface.blit(head, self.head)
         self.update_snake()
     
     def left(self):
         background.surface.fill(background.color)
         self.prior_head = self.head
         self.head = (self.head[0]-20, self.head[1])
-        background.surface.blit(worm, self.head)
+        background.surface.blit(head, self.head)
         self.update_snake()
 
     def right(self):
         background.surface.fill(background.color)
         self.prior_head = self.head
         self.head = (self.head[0]+20, self.head[1])
-        background.surface.blit(worm, self.head)
+        background.surface.blit(head, self.head)
         self.update_snake()
 
     def grow(self):
@@ -104,20 +108,27 @@ class Snake(Gamebackground):
     def colision(self):
         pass
     
+def pregame_launch():
+    background = Gamebackground(500, 500, (50, 168, 82), food_location=(260.0, 260.0))
+    snake = Snake()
+    food = pygame.image.load(Path("static/food1.png")).convert_alpha()
+    food = pygame.transform.smoothscale(food, (32, 32))
+    worm = pygame.image.load(Path("static/worm.png")).convert_alpha()
+    worm = pygame.transform.smoothscale(worm, (32, 32))
+    head = pygame.image.load(Path("static/shead.png")).convert_alpha()
+    head = pygame.transform.smoothscale(head, (32, 32))
 
-background = Gamebackground(500, 500, (50, 168, 82), food_location=(260.0, 260.0))
-snake = Snake()
-food = pygame.image.load(Path("static/food1.png")).convert_alpha()
-food = pygame.transform.smoothscale(food, (48, 48))
-worm = pygame.image.load(Path("static/worm.png")).convert_alpha()
-worm = pygame.transform.smoothscale(worm, (48, 48))
+    clock = pygame.time.Clock()
+    running = True
 
-clock = pygame.time.Clock()
-running = True
+    return background, clock, running, snake, food, worm, head
+
+background, clock, running, snake, food, worm, head  = pregame_launch()
 snake.spawn_worm()
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            final_score = snake.grow_size
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
