@@ -44,23 +44,28 @@ class Snake(Gamebackground):
         pass
 
     def up(self):
-        # up = (x=x, y+=1)
         background.surface.fill(background.color)
-        self.head = (self.head[0], self.head[1]-100)
+        self.head = (self.head[0], self.head[1]-20)
         background.surface.blit(worm, self.head)
-        print(f"worm is at {self.head}")
+        
 
     def down(self):
-        # down = (x=x, y-=1)
-        pass
+        background.surface.fill(background.color)
+        self.head = (self.head[0], self.head[1]+20)
+        background.surface.blit(worm, self.head)
+        
     
     def left(self):
-        #left = (x-=1, y=y)
-        pass
+        background.surface.fill(background.color)
+        self.head = (self.head[0]-20, self.head[1])
+        background.surface.blit(worm, self.head)
+        
 
     def right(self):
-        #right = (x+=1, y=y)
-        pass
+        background.surface.fill(background.color)
+        self.head = (self.head[0]+20, self.head[1])
+        background.surface.blit(worm, self.head)
+        
 
     def grow(self):
         self.grow_size += 1
