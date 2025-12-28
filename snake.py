@@ -108,9 +108,9 @@ class Snake(Gamebackground):
 background = Gamebackground(500, 500, (50, 168, 82), food_location=(260.0, 260.0))
 snake = Snake()
 food = pygame.image.load(Path("static/food1.png")).convert_alpha()
-food = pygame.transform.smoothscale(food, (64, 64))
+food = pygame.transform.smoothscale(food, (48, 48))
 worm = pygame.image.load(Path("static/worm.png")).convert_alpha()
-worm = pygame.transform.smoothscale(worm, (64, 64))
+worm = pygame.transform.smoothscale(worm, (48, 48))
 
 clock = pygame.time.Clock()
 running = True
