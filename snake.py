@@ -17,31 +17,46 @@ class Gamebackground():
 
     def show_splash(self):
         pygame.display.flip()
-        background.update_food()
+        # background.update_food()
+        self.show_food()
 
     def spawn_food(self):
         self.surface.fill(self.color)
         print(f"food is at {self.food_location}")
         self.surface.blit(food, self.food_location)
-    
-    def update_food(self):
-        self.surface.fill(self.color)
+
+    def show_food(self):
+        # self.surface.fill(self.color)
         print(f"food is at {self.food_location}")
         self.surface.blit(food, self.food_location)
+    
+    def update_food(self):
+        self.food_location = (randint(0, 450), randint(0, 450))
+        # self.surface.fill(self.color)
+        # print(f"food is at {self.food_location}")
+        self.surface.blit(food, self.food_location)
+
+    def check_snake(self, snake):
+        print(f"self.foodlocation: {self.food_location} background.head: {snake.head}")
+        if self.food_location == snake.head:
+            background.update_food()
+            snake.grow()
+
 
 class Snake(Gamebackground):
     def __init__(self , length=3, spawn=(5, 5)):
         self.spawn = spawn
         self.length = length 
-        self.head = (background.height/2, background.width/2)
+        self.head = (int(background.height/2), int(background.width/2))
         self.grow_size = 0
     
     def spawn_worm(self):
         location = (background.height/2, background.width/2)
         background.surface.blit(worm, location)
 
-    def update_snake():
-        pass
+    def update_snake(self):
+        if self.grow_size > 0:
+            background.surface.blit(worm, (self.head[0], self.head[1]-60))
 
     def up(self):
         # up = (x=x, y+=1)
@@ -49,6 +64,7 @@ class Snake(Gamebackground):
         self.head = (self.head[0], self.head[1]-100)
         background.surface.blit(worm, self.head)
         print(f"worm is at {self.head}")
+        self.update_snake()
 
     def down(self):
         # down = (x=x, y-=1)
@@ -69,7 +85,7 @@ class Snake(Gamebackground):
         pass
     
 
-background = Gamebackground(500, 500, (50, 168, 82))
+background = Gamebackground(500, 500, (50, 168, 82), food_location=(250.0, 250.0))
 snake = Snake()
 food = pygame.image.load(Path("static/food1.png")).convert_alpha()
 food = pygame.transform.smoothscale(food, (64, 64))
@@ -95,6 +111,7 @@ while running:
             elif event.key == pygame.K_f:
                 background.spawn_food()
     background.show_splash()
+    background.check_snake(snake=snake)
     
     clock.tick(60)
 
