@@ -123,6 +123,9 @@ def pregame_launch():
 
     return background, clock, running, snake, food, worm, head
 
+def post_game():
+    pass
+
 background, clock, running, snake, food, worm, head  = pregame_launch()
 snake.spawn_worm()
 while running:
@@ -145,3 +148,4 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+post_game()
